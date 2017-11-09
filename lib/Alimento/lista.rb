@@ -43,4 +43,14 @@ class LDE
         end
         true
     end
+
+    def pop_front()
+        if(@size!=0)
+            head = @head
+            @head = head.next
+            @head.prev = nil
+            @size -=1
+            return head
+        end
+    end
 end

@@ -47,9 +47,9 @@ RSpec.describe Node do
     end
         describe "Pruebas sobre el nodo" do
             it "Debe existir un Nodo de la lista con sus datos, su anterior y su siguiente" do
-                expect(@nodo[:value]).to eq("14")
-                expect(@nodo[:next]).to eq(nil)
-                expect(@nodo[:prev]).to eq(nil)
+                expect(@node[:value]).to eq("14")
+                expect(@node[:next]).to eq(nil)
+                expect(@node[:prev]).to eq(nil)
             end
         end
 end
@@ -68,6 +68,9 @@ RSpec.describe LDE do
         it "Se puede insertar un elemento en la Lista" do
             expect(@lista.push_back(@huevo_frito)).to eq(true)
             expect(@lista.push_front(@leche_vaca)).to eq(true)
+        end
+        it "Se extrae el primer elemento de la Lista" do
+            expect(@lista.pop_front()).to_not be_nil
         end
     end
 end
