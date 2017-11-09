@@ -72,5 +72,8 @@ RSpec.describe LDE do
         it "Se extrae el primer elemento de la Lista" do
             expect(@lista.pop_front()).to_not be_nil
         end
+        it "Se extrae el ultimo elemento de la Lista" do
+            expect(@lista.pop_back()).to_not be_nil
+        end
     end
 end
