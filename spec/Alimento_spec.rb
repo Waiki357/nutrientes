@@ -13,27 +13,27 @@ RSpec.describe Alimento do
 
     describe "# Pruebas sobre alimentos" do
         it "Se almacena correctamente el nombre del huevo frito" do
-          expect(@huevo_frito.nombre_to_s).not_to eq("Huevo frito")
+            expect(@huevo_frito.nombre_to_s).not_to eq("Huevo frito")
         end
 
         it "Se almacena correctamente las proteinas de la ternera" do
-          expect(@ternera.proteinas_to_i).to eq(21.1)
+            expect(@ternera.proteinas_to_i).to eq(21.1)
         end
 
         it "Se almacena correctamente los glucidos del bacalao" do
-          expect(@bacalao.glucidos_to_i).to eq(0.0)
+            expect(@bacalao.glucidos_to_i).to eq(0.0)
         end
 
         it "Se almacena correctamente los lipidos del yogurt" do
-          expect(@yogurt.lipidos_to_i).to eq(3.8)
+            expect(@yogurt.lipidos_to_i).to eq(3.8)
         end
 
         it "Informacion sobre el pollo" do
-          expect(@pollo.informacion_to_s).to include("Pollo")
+            expect(@pollo.informacion_to_s).to include("Pollo")
         end
 
         it "Valor energetico de la leche de vaca" do
-          expect(@leche_vaca.valor_energetico).to eq(61.2)
+            expect(@leche_vaca.valor_energetico).to eq(61.2)
         end
     end
 end
