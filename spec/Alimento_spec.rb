@@ -60,9 +60,6 @@ RSpec.describe LDE do
         @huevo_frito = Alimentos.new("Huevo Frito",14.1, 0.0, 19.5)
         @leche_vaca = Alimentos.new("Leche Vaca", 3.3, 4.8, 3.2)
 
-        @lista_carnes = LDE.new()
-
-
     end
 
     describe "Pruebas sobre la lista" do
@@ -87,6 +84,16 @@ RSpec.describe Grupo_alimentos do
         @cerdo = Grupo_alimentos.new("Cerdo",21.5, 0.0, 6.3,"Carnes y derivados")
         @ternera = Grupo_alimentos.new("Ternera",21.1, 0.0, 3.1,"Carnes y derivados")
         @pollo = Grupo_alimentos.new("Pollo", 20.6, 0.0, 5.6,"Carnes y derivados")
+
+        @lista_pescados = LDE.new()
+        @bacalao = Grupo_alimentos.new("Bacalao",17.7, 0.0, 0.4,"Pescados y mariscos")
+        @atun = Grupo_alimentos.new("Atun",21.5, 0.0, 15.5,"Pescados y mariscos")
+        @salmon = Grupo_alimentos.new("Salmon", 19.9, 0.0, 13.6,"Pescados y mariscos")
+
+        @lista_pescados.push_back(@bacalao)
+        @lista_pescados.push_back(@atun)
+        @lista_pescados.push_back(@salmon)
+
     end
     describe "Pruebas sobre herencia" do
         it "Comprobar la clase de un objeto" do
@@ -97,6 +104,20 @@ RSpec.describe Grupo_alimentos do
         end
         it "Comprobar el tipo de un objeto y su pertenecia a una jerarquia (Object)" do
             expect(@pollo.is_a?Object).to eq(true)
+        end
+    end
+
+    describe "Pruebas sobre herencia" do
+        it "Nombre del grupo y valor energetico del salmon" do
+            tmp = @lista_pescados.pop_back().value
+            expect(tmp.to_s).to eq("Pescados y mariscos")
+            expect(tmp.valor_energetico).to eq(202.0)
+        end
+
+        it "Nombre y valor energetico del atun" do
+            tmp2 = @lista_pescados.pop_back().value
+            expect(tmp2.nombre_to_s).to eq("Atun")
+            expect(tmp2.valor_energetico).to eq(225.5)
         end
     end
 end

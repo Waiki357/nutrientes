@@ -56,7 +56,7 @@ class LDE
     def pop_back()
         if(@size!=0)
             tail = @tail
-            @tail = @tail.prev
+            @tail = tail.prev
             @tail.next = nil if @tail
             @size -=1
             return tail

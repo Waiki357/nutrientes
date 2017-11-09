@@ -1,16 +1,18 @@
 example_id                     | status | run_time        |
 ------------------------------ | ------ | --------------- |
-./spec/Alimento_spec.rb[1:1:1] | passed | 0.00187 seconds |
+./spec/Alimento_spec.rb[1:1:1] | passed | 0.0019 seconds  |
 ./spec/Alimento_spec.rb[1:1:2] | passed | 0.00011 seconds |
 ./spec/Alimento_spec.rb[1:1:3] | passed | 0.00008 seconds |
-./spec/Alimento_spec.rb[1:1:4] | passed | 0.00009 seconds |
-./spec/Alimento_spec.rb[1:1:5] | passed | 0.00211 seconds |
-./spec/Alimento_spec.rb[1:1:6] | passed | 0.00011 seconds |
-./spec/Alimento_spec.rb[2:1:1] | passed | 0.00009 seconds |
-./spec/Alimento_spec.rb[3:1:1] | passed | 0.00839 seconds |
+./spec/Alimento_spec.rb[1:1:4] | passed | 0.00008 seconds |
+./spec/Alimento_spec.rb[1:1:5] | passed | 0.00249 seconds |
+./spec/Alimento_spec.rb[1:1:6] | passed | 0.00012 seconds |
+./spec/Alimento_spec.rb[2:1:1] | passed | 0.00011 seconds |
+./spec/Alimento_spec.rb[3:1:1] | passed | 0.0092 seconds  |
 ./spec/Alimento_spec.rb[3:1:2] | passed | 0.00015 seconds |
 ./spec/Alimento_spec.rb[3:1:3] | passed | 0.00009 seconds |
 ./spec/Alimento_spec.rb[3:1:4] | passed | 0.00009 seconds |
 ./spec/Alimento_spec.rb[4:1:1] | passed | 0.00009 seconds |
-./spec/Alimento_spec.rb[4:1:2] | passed | 0.00007 seconds |
+./spec/Alimento_spec.rb[4:1:2] | passed | 0.00008 seconds |
 ./spec/Alimento_spec.rb[4:1:3] | passed | 0.00007 seconds |
+./spec/Alimento_spec.rb[4:2:1] | passed | 0.00009 seconds |
+./spec/Alimento_spec.rb[4:2:2] | passed | 0.00008 seconds |
