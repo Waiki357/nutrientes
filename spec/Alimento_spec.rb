@@ -13,7 +13,7 @@ RSpec.describe Alimento do
         @bacalao = Alimentos.new("Bacalao",17.7, 0.0, 0.4)
     end
 
-    describe "# Pruebas sobre alimentos" do
+    describe "Pruebas sobre alimentos" do
         it "Se almacena correctamente el nombre del huevo frito" do
             expect(@huevo_frito.nombre_to_s).not_to eq("Huevo frito")
         end
@@ -59,9 +59,13 @@ RSpec.describe LDE do
         @lista = LDE.new()
         @huevo_frito = Alimentos.new("Huevo Frito",14.1, 0.0, 19.5)
         @leche_vaca = Alimentos.new("Leche Vaca", 3.3, 4.8, 3.2)
+
+        @lista_carnes = LDE.new()
+
+
     end
 
-    describe "# Pruebas sobre la lista" do
+    describe "Pruebas sobre la lista" do
         it "Debe existir una Lista con su cabeza y su cola" do
             expect(@lista).to_not be_nil
         end
@@ -74,6 +78,25 @@ RSpec.describe LDE do
         end
         it "Se extrae el ultimo elemento de la Lista" do
             expect(@lista.pop_back()).to_not be_nil
+        end
+    end
+end
+
+RSpec.describe Grupo_alimentos do
+    before :all do
+        @cerdo = Grupo_alimentos.new("Cerdo",21.5, 0.0, 6.3,"Carnes y derivados")
+        @ternera = Grupo_alimentos.new("Ternera",21.1, 0.0, 3.1,"Carnes y derivados")
+        @pollo = Grupo_alimentos.new("Pollo", 20.6, 0.0, 5.6,"Carnes y derivados")
+    end
+    describe "Pruebas sobre herencia" do
+        it "Comprobar la clase de un objeto" do
+          expect(@cerdo.instance_of?Grupo_alimentos).to eq(true)
+        end
+        it "Comprobar el tipo de un objeto y su pertenecia a una jerarquia(Alimentos)" do
+            expect(@ternera.is_a?Alimentos).to eq(true)
+        end
+        it "Comprobar el tipo de un objeto y su pertenecia a una jerarquia (Object)" do
+            expect(@pollo.is_a?Object).to eq(true)
         end
     end
 end

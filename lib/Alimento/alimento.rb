@@ -29,3 +29,15 @@ class Alimentos
         ((@proteinas*4)+(@glucidos*4)+(@lipidos*9))
     end
 end
+
+class Grupo_alimentos < Alimentos
+
+    def initialize(nom, pro, glu, lip, grupo)
+        super(nom, pro, glu, lip)
+        @nombre_grupo = grupo
+    end
+
+    def to_s
+        @nombre_grupo
+    end
+end
