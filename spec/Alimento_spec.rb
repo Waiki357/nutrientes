@@ -41,6 +41,19 @@ RSpec.describe Alimento do
 
 end
 
+RSpec.describe Node do
+    before :all do
+        @node = Node.new("14",nil,nil)
+    end
+        describe "Pruebas sobre el nodo" do
+            it "Debe existir un Nodo de la lista con sus datos, su anterior y su siguiente" do
+                expect(@nodo[:value]).to eq("14")
+                expect(@nodo[:next]).to eq(nil)
+                expect(@nodo[:prev]).to eq(nil)
+            end
+        end
+end
+
 RSpec.describe LDE do
     before :all do
         @lista = LDE.new()
@@ -49,10 +62,10 @@ RSpec.describe LDE do
     end
 
     describe "# Pruebas sobre la lista" do
-        it "Creacion de la lista" do
+        it "Debe existir una Lista con su cabeza y su cola" do
             expect(@lista).to_not be_nil
         end
-        it "Insercion en la lista" do
+        it "Se puede insertar un elemento en la Lista" do
             expect(@lista.push_back(@huevo_frito)).to eq(true)
             expect(@lista.push_front(@leche_vaca)).to eq(true)
         end
