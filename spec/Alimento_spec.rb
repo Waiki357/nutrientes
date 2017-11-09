@@ -1,4 +1,6 @@
 require "spec_helper"
+require "./lib/Alimento/lista"
+require "./lib/Alimento/alimento"
 
 RSpec.describe Alimento do
     before :each do
@@ -34,6 +36,25 @@ RSpec.describe Alimento do
 
         it "Valor energetico de la leche de vaca" do
             expect(@leche_vaca.valor_energetico).to eq(61.2)
+        end
+    end
+
+end
+
+RSpec.describe LDE do
+    before :all do
+        @lista = LDE.new()
+        @huevo_frito = Alimentos.new("Huevo Frito",14.1, 0.0, 19.5)
+        @leche_vaca = Alimentos.new("Leche Vaca", 3.3, 4.8, 3.2)
+    end
+
+    describe "# Pruebas sobre la lista" do
+        it "Creacion de la lista" do
+            expect(@lista).to_not be_nil
+        end
+        it "Insercion en la lista" do
+            expect(@lista.push_back(@huevo_frito)).to eq(true)
+            expect(@lista.push_front(@leche_vaca)).to eq(true)
         end
     end
 end
