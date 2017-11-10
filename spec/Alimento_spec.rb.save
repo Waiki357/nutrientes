@@ -100,7 +100,8 @@ RSpec.describe Grupo_alimentos do
           expect(@cerdo.instance_of?Grupo_alimentos).to eq(true)
         end
         it "Comprobar el tipo de un objeto y su pertenecia a una jerarquia(Alimentos)" do
-            expect(@ternera.class.superclass).to eq(Alimentos)
+            expect(@ternera.superclass).to eq("Alimentos"
+)
         end
         it "Comprobar el tipo de un objeto y su pertenecia a una jerarquia (Object)" do
             expect(@pollo.is_a?Object).to eq(true)
