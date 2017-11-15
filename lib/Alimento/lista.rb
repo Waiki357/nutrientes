@@ -3,6 +3,7 @@ Node  =  Struct.new(:value,  :next,  :prev)
 
 class LDE
     attr_reader :head, :tail, :size
+    include Enumerable
 
     def initialize
         @head = nil
@@ -12,6 +13,14 @@ class LDE
 
     def size
         @size
+    end
+
+    def each
+        tmp = @head
+        while(tmp != nil)
+            yield tmp
+            tmp = tmp[:next]
+        end
     end
 
     def push_back(valor)

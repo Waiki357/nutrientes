@@ -65,6 +65,9 @@ RSpec.describe LDE do
         @lista = LDE.new()
         @huevo_frito = Alimentos.new("Huevo Frito",14.1, 0.0, 19.5)
         @leche_vaca = Alimentos.new("Leche Vaca", 3.3, 4.8, 3.2)
+        @yogurt = Alimentos.new("Yogurt", 3.8, 4.9, 3.8)
+        @cerdo = Alimentos.new("Cerdo",21.5, 0.0, 6.3)
+        @ternera = Alimentos.new("Ternera",21.1, 0.0, 3.1)
 
     end
 
@@ -81,6 +84,21 @@ RSpec.describe LDE do
         end
         it "Se extrae el ultimo elemento de la Lista" do
             expect(@lista.pop_back()).to_not be_nil
+        end
+    end
+
+     describe "Modulo enumerable sobre la lista" do
+        it "all?" do
+            @lista.push_back(@huevo_frito)
+            @lista.push_back(@leche_vaca)
+            @lista.push_back(@yogurt)
+            @lista.push_back(@cerdo)
+            @lista.push_back(@ternera)
+            expect(@lista.all? {|alimento| alimento[:value].valor_energetico >= 10.5 }).to eq(true)
+        end
+
+        it "find" do
+            expect(@lista.find_all {|alimento| alimento[:value].nombre_to_s == "Yogurt" }).to_not be_nil
         end
     end
 end
