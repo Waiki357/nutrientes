@@ -39,6 +39,12 @@ RSpec.describe Alimento do
         end
     end
 
+    describe "Modulo comparable alimentos" do
+        it "Cerdo <=> Ternera valor energetico" do
+            expect(@cerdo < @ternera).to eq(false)
+        end
+    end
+
 end
 
 RSpec.describe Node do

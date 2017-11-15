@@ -1,6 +1,9 @@
 require "Alimento/alimento"
 
 class Alimentos
+
+    include Comparable
+
     def initialize(nom, pro, glu, lip)
         @nombre, @proteinas, @glucidos, @lipidos = nom, pro, glu, lip
     end
@@ -27,6 +30,10 @@ class Alimentos
 
     def valor_energetico
         ((@proteinas*4)+(@glucidos*4)+(@lipidos*9))
+    end
+
+    def <=>(other)
+        self.valor_energetico <=> other.valor_energetico
     end
 end
 
