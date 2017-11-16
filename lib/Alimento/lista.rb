@@ -1,6 +1,7 @@
 #  create  a  Struct  with  :value,  :next  and  :prev
 Node  =  Struct.new(:value,  :next,  :prev)
 
+#Clase LDE que es Una lista doblemente enlazada
 class LDE
     attr_reader :head, :tail, :size
     include Enumerable
@@ -11,10 +12,12 @@ class LDE
         @size = 0
     end
 
+    #Obtienes el tamaño de la lista
     def size
         @size
     end
 
+    #Funcion para el modulo enumerable
     def each
         tmp = @head
         while(tmp != nil)
@@ -23,6 +26,7 @@ class LDE
         end
     end
 
+    #Insertas elemento por el final
     def push_back(valor)
         node = Node.new(valor,nil,nil)
         if(@size==0)
@@ -38,6 +42,7 @@ class LDE
         true
     end
 
+    #Insertas elemento por el principio
     def push_front(valor)
         node = Node.new(valor,nil,nil)
         if(@size==0)
@@ -53,6 +58,7 @@ class LDE
         true
     end
 
+    #Sacas elemento por el principio
     def pop_front()
         if(@size!=0)
             head = @head
@@ -62,6 +68,8 @@ class LDE
             return head
         end
     end
+
+    #Sacas elemento por el final
     def pop_back()
         if(@size!=0)
             tail = @tail
