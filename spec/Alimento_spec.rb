@@ -51,7 +51,7 @@ RSpec.describe Node do
     before :all do
         @node = Node.new("14",nil,nil)
     end
-        describe "Pruebas sobre el nodo" do
+        describe "Pruebas sobre el node" do
             it "Debe existir un Nodo de la lista con sus datos, su anterior y su siguiente" do
                 expect(@node[:value]).to eq("14")
                 expect(@node[:next]).to eq(nil)
