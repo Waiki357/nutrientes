@@ -1,7 +1,7 @@
 require "bundler/setup"
 require "Alimento"
 
-require "coveralls"
+require 'coveralls'
 Coveralls.wear!
 
 RSpec.configure do |config|
