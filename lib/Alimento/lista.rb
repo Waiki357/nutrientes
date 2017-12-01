@@ -12,7 +12,7 @@ class LDE
         @size = 0
     end
 
-    #Obtienes el tamaño de la lista
+    #Obtienes el tamaï¿½o de la lista
     def size
         @size
     end
@@ -78,5 +78,38 @@ class LDE
             @size -=1
             return tail
         end
+    end
+
+    def list_to_array()
+        self.map { |e| e[:value] }
+    end
+
+    def ord_for
+        s = self.list_to_array
+        for i in 1..(s.size-1)
+          for j in 0..(s.size-i-1)
+            if s[j].valor_energetico > s[j+1].valor_energetico
+              s[j],s[j+1] = s[j+1],s[j]
+            end
+          end
+        end
+        s
+    end
+
+    def ord_each
+        s = self.list_to_array
+        (1..(s.size-1)).each do |i|
+          (0..(s.size-i-1)).each do |j|
+            if s[j].valor_energetico > s[j+1].valor_energetico
+              s[j],s[j+1] = s[j+1],s[j]
+            end
+          end
+        end
+        s
+    end
+
+    def ord_sort
+      s = self.list_to_array
+      s.sort { |a,b| a.valor_energetico <=> b.valor_energetico }
     end
 end

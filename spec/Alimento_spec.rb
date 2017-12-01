@@ -1,6 +1,61 @@
 require "spec_helper"
+require 'benchmark'
 require "./lib/Alimento/lista"
 require "./lib/Alimento/alimento"
+
+RSpec.describe Alimento_IG do
+    before :all do
+
+      ign_glucosa     = [[6.1,6.6,6.3,6.3,6.1,6.9,6.8,6.5,6.4,6.9,6.8,6.5,6.3,6.2,6.7,6.2,5.9,5.8,5.8,5.8,5.8,5.8,5.9,6.2,6.4],
+                      [4.9,4.9,5.2,5.8,6.5,7.0,7.2,7.3,7.3,6.6,6.2,6.1,6.0,6.1,5.9,5.9,5.9,5.9,5.8,5.8,5.5,5.5,5.6,5.9,5.9]]
+      ign_chocolate   = [[6.5,6.5,6.7,6.5,6.5,6.8,6.7,6.2,6.5,7.2,6.9,7.0,6.3,6.2,6.1,5.9,5.8,6.1,6.7,6.7,6.6,6.7,6.9,7.2,7.1],
+                      [4.6,4.6,4.7,4.7,4.8,4.7,4.8,4.8,4.6,4.4,4.7,4.7,4.8,4.7,5.2,5.9,5.9,5.7,5.4,5.3,5.1,4.8,4.8,4.9,5.9]]
+
+      @chocolate = Alimento_IG.new("Chocolate",5.3, 47.0, 30.0,  ign_chocolate)
+      @glucosa = Alimento_IG.new("Glucosa", 3.8, 4.9, 3.8, ign_glucosa)
+
+    end
+
+     describe "Programacion funcional" do
+        it "IG Chocolate" do
+
+          #Individuo 1 Chocolate
+          g0 = @chocolate.first.first
+          gi = @chocolate.first.take(24).map { |i| ((i-g0)/2)*5 }
+          gi_1 = @chocolate.first.drop(1).map { |e| ((e-g0)/2)*5  }
+
+          aibc_1 = gi.inject(0){|sum,x| sum + x }
+          aibc_1 += gi_1.inject(0){|sum,x| sum + x }
+
+          #Individuo 2 Chocolate
+          g1 = @chocolate.first(2).drop(1).first.first
+          gi_2 = @chocolate.first(2).drop(1).first.take(24).map { |i| ((i-g1)/2)*5 }
+          gi_1_2 = @chocolate.first(2).drop(1).first.drop(1).map { |e| ((e-g1)/2)*5 }
+
+          aibc_2 = gi_2.inject(0){|sum,x| sum + x }
+          aibc_2 += gi_1_2.inject(0){|sum,x| sum + x }
+
+          #Glucosa
+          g0 = @glucosa.first.first
+          gi = @glucosa.first.take(24).map { |i| ((i-g0)/2)*5 }
+          gi_1 = @glucosa.first.drop(1).map { |e| ((e-g0)/2)*5  }
+          aibc_g = gi.inject(0){|sum,x| sum + x }
+          aibc_g += gi_1.inject(0){|sum,x| sum + x }
+          g1 = @glucosa.first(2).drop(1).first.first
+          gi_2 = @glucosa.first(2).drop(1).first.take(24).map { |i| ((i-g1)/2)*5 }
+          gi_1_2 = @glucosa.first(2).drop(1).first.drop(1).map { |e| ((e-g1)/2)*5  }
+          aibc_g2 = gi_2.inject(0){|sum,x| sum + x }
+          aibc_g2 += gi_1_2.inject(0){|sum,x| sum + x }
+
+          ign_1 = (aibc_1/aibc_g)*100
+          ign_2 = (aibc_2/aibc_g2)*100
+
+          ig = (ign_1 + ign_2)/2
+          expect(ig).to eq(33.21610855222208)
+
+        end
+    end
+end
 
 RSpec.describe Alimento do
     before :each do
@@ -51,7 +106,7 @@ RSpec.describe Node do
     before :all do
         @node = Node.new("14",nil,nil)
     end
-        describe "Pruebas sobre el node" do
+        describe "Pruebas sobre el nodo" do
             it "Debe existir un Nodo de la lista con sus datos, su anterior y su siguiente" do
                 expect(@node[:value]).to eq("14")
                 expect(@node[:next]).to eq(nil)
@@ -69,6 +124,49 @@ RSpec.describe LDE do
         @cerdo = Alimentos.new("Cerdo",21.5, 0.0, 6.3)
         @ternera = Alimentos.new("Ternera",21.1, 0.0, 3.1)
 
+        @lista_2 = LDE.new()
+        @cerdo = Grupo_alimentos.new("Cerdo",21.5, 0.0, 6.3,"Carnes y derivados")
+        @ternera = Grupo_alimentos.new("Ternera",21.1, 0.0, 3.1,"Carnes y derivados")
+        @pollo = Grupo_alimentos.new("Pollo", 20.6, 0.0, 5.6,"Carnes y derivados")
+        @bacalao = Grupo_alimentos.new("Bacalao",17.7, 0.0, 0.4,"Pescados y mariscos")
+        @atun = Grupo_alimentos.new("Atun",21.5, 0.0, 15.5,"Pescados y mariscos")
+        @salmon = Grupo_alimentos.new("Salmon", 19.9, 0.0, 13.6,"Pescados y mariscos")
+
+        @lista_2.push_back(@pollo)
+        @lista_2.push_back(@cerdo)
+        @lista_2.push_back(@ternera)
+        @lista_2.push_back(@bacalao)
+        @lista_2.push_back(@atun)
+        @lista_2.push_back(@salmon)
+
+        Benchmark.bm do |x|
+          x.report { @lista_2.ord_for }
+          x.report { @lista_2.ord_each }
+          x.report { @lista_2.ord_sort }
+        end
+
+    end
+
+    describe "Ordenacion y benchmark" do
+
+      it "Representacion de la tabla mendiante un array" do
+          expect(@lista_2.list_to_array.size).to eq(6)
+      end
+
+      it "Elementos ordenados por su valor energetico usando bucles for" do
+          s = @lista_2.ord_for
+          expect(s[0].valor_energetico).to be < s[s.size-1].valor_energetico
+      end
+
+      it "Elementos ordenados por su valor energetico usando bucles each" do
+          s = @lista_2.ord_each
+          expect(s[0].valor_energetico).to be < s[s.size-1].valor_energetico
+      end
+
+      it "Elementos ordenados por su valor energetico usando sort" do
+          s = @lista_2.ord_sort
+          expect(s[0].valor_energetico).to be < s[s.size-1].valor_energetico
+      end
     end
 
     describe "Pruebas sobre la lista" do

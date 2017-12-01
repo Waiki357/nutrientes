@@ -60,3 +60,18 @@ class Grupo_alimentos < Alimentos
         @nombre_grupo
     end
 end
+
+class Alimento_IG < Alimentos
+
+    include Enumerable
+    #Inicializa los valores
+    def initialize(nom, pro, glu, lip, valores)
+        super(nom, pro, glu, lip)
+        @ign = valores
+    end
+
+    def each
+      yield @ign[0]
+      yield @ign[1]
+    end
+end
