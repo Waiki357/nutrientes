@@ -81,7 +81,7 @@ PLATFORMS
 
 DEPENDENCIES
   Alimento!
-  bundler (~> 1.3.5)
+  bundler (~> 1.16.0)
   coveralls
   guard
   guard-bundler
